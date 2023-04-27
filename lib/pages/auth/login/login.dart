@@ -55,18 +55,22 @@ class LoginPage extends StatelessWidget {
                       right: TrivialRushStyle.double5),
                   child: TextField(
                     controller: value.passwordCtrl,
-                    obscureText: true,
+                    obscureText: value.obscureText,
                     decoration: InputDecoration(
                       labelText: Strings.password,
                       suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: true
+                        onPressed: () {
+                          value.showHidePassword();
+                        },
+                        icon: value.showPassword == false
                             ? const Icon(
                                 Icons.visibility,
+                                color: Colors.grey,
                               )
                             // ignore: dead_code
                             : const Icon(
                                 Icons.visibility_off,
+                                color: Colors.grey,
                               ),
                       ),
                       border: const OutlineInputBorder(),

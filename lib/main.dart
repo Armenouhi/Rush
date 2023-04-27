@@ -1,6 +1,6 @@
 // import 'package:exam_at/pages/auth/login/login.dart';
 
-import 'package:exam_at/pages/auth/login.dart';
+import 'package:exam_at/pages/auth/login/login.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/styles/style_of_appbar.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,12 +28,23 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: appBarStyle.white,
+        inputDecorationTheme: const InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.grey),
+          ),
+          labelStyle: TextStyle(
+            color: Colors.grey,
+          )
+        ),
         iconTheme: const IconThemeData(
           color: Color.fromRGBO(204, 0, 1, 0.8),
         ),
       ),
-      // home: LoginPage(),
-      home: QuestionsWidget(),
+      home: LoginPage(),
+      // home: QuestionsWidget(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

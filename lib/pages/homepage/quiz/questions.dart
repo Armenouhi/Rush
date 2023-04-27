@@ -18,7 +18,6 @@ class QuestionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return ChangeNotifierProvider(
       create: (context) => QuestionsProvider(),
       child: Stack(alignment: Alignment.topCenter, children: <Widget>[
@@ -52,7 +51,8 @@ class QuestionsWidget extends StatelessWidget {
                             child: CircularProgressIndicator(
                               value: second,
                               color: TrivialRushColors.white,
-                              backgroundColor: TrivialRushColors.colors[value.i],
+                              backgroundColor:
+                                  TrivialRushColors.colors[value.i],
                               strokeWidth: 8,
                             ),
                           ),
@@ -62,7 +62,8 @@ class QuestionsWidget extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.center,
                             child: TweenAnimationBuilder(
-                              tween: Tween(begin: value.seconds.toDouble(), end: 0.0),
+                              tween: Tween(
+                                  begin: value.seconds.toDouble(), end: 0.0),
                               duration: Duration(seconds: value.seconds),
                               builder: (context, valueT, _) {
                                 var timer = valueT;
@@ -106,7 +107,7 @@ class QuestionsWidget extends StatelessWidget {
     );
   }
 
-  Widget Question(questionProvider) {
+  Widget Question(QuestionsProvider questionProvider) {
     return Scrollbar(
       child: Column(
         children: <Widget>[
@@ -127,17 +128,12 @@ class QuestionsWidget extends StatelessWidget {
                       child: Consumer<QuestionsProvider>(
                         builder: (context, value, child) =>
                             DiagonallyShapedCard(
-                          index: index ,
-                          width: 80,
-                          height: 40,
-                          color: questionProvider.checkAnswer != true
-                              ? const Color.fromRGBO(249, 249, 249, 0.8)
-                              : index == value.currentQuestionIndex //
-                                  ? value.correctAnswer == true
-                                      ? const Color.fromRGBO(0, 153, 0, 0.8)
-                                      : const Color.fromRGBO(204, 0, 1, 0.8)
-                                  : const Color.fromRGBO(249, 249, 249, 0.8),
-                        ),
+                                index: index + 1,
+                                width: 80,
+                                height: 40,
+                                color: index <= value.currentQuestionIndex - 1
+                                    ? questionProvider.backColor
+                                    : const Color.fromRGBO(249, 249, 249, 0.8)),
                       ),
                     );
                   },

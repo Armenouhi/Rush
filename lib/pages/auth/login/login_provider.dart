@@ -13,12 +13,13 @@ class LoginProvider extends ChangeNotifier {
   bool isChangePage = false;
   bool showDialog = false;
   bool isEmpty = false;
+  bool obscureText = true;
 
   late SharedPreferences sharedPreferences;
   var data;
 
   LoginProvider() {
-    getJsonData();
+    // getJsonData();
     // onLogin();
   }
 
@@ -49,14 +50,21 @@ class LoginProvider extends ChangeNotifier {
     return isChangePage;
   }
 
-  Future<void> getJsonData() async {
-    final prefs = await SharedPreferences.getInstance();
-    data = prefs.getString('json') ?? data;
-
-    print(data.runtimeType);
-    Map json = jsonDecode(data);
-    var js = json as Map;
-
-    // print(js.map((key, value) => value));
+  bool showHidePassword() {
+    showPassword = !showPassword;
+    obscureText = !obscureText;
+    notifyListeners();
+    return showPassword;
   }
+
+  // Future<void> getJsonData() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   data = prefs.getString('json') ?? data;
+
+  //   print(data.runtimeType);
+  //   Map json = jsonDecode(data);
+  //   var js = json as Map;
+
+  //   // print(js.map((key, value) => value));
+  // }
 }

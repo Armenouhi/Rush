@@ -29,9 +29,10 @@ class QuestionsProvider extends ChangeNotifier {
   String text = 'Get Ready';
   int seconds = 60;
   int swiftness = 0;
-  int length = 0;
+  // int length = 0;
   int i = 0;
   int score = 0;
+  Color backColor = const Color.fromRGBO(249, 249, 249, 0.8);
 
   ContainerColors colorsContainer = ContainerColors();
 
@@ -109,21 +110,25 @@ class QuestionsProvider extends ChangeNotifier {
     }
   }
 
-  correctAnswerMethod(answerId) async {
+  onCheckAnswer(answerId) async {
     checkAnswer = true;
+    i++;
     int lengthAnswers = questionsData[currentQuestionIndex].answers!.length;
 
     for (var i = 0; i < lengthAnswers; i++) {
       if (questionsData[currentQuestionIndex].answers![i].answerId ==
           answerId) {
+        showScore();
         questionIndex = currentQuestionIndex;
         if (questionsData[currentQuestionIndex].answers![i].correctAnswer ==
             true) {
           correctAnswer = true;
+          backColor = const Color.fromRGBO(0, 153, 0, 0.8);
           notifyListeners();
           return;
         } else {
           correctAnswer = false;
+          backColor = const Color.fromRGBO(204, 0, 1, 0.8);
           notifyListeners();
           return;
         }
@@ -133,41 +138,20 @@ class QuestionsProvider extends ChangeNotifier {
     return correctAnswer;
   }
 
-  changeColor() {
-    i += 1;
-  }
-
-  // changeSeconds(answerId) async {
-  //   length += 1;
-  //   Duration interval = const Duration(seconds: 1);
-  //   Stream<int> stream = Stream<int>.periodic(interval, (it) => -1 * (it - 60));
-  //   await for (int i in stream) {
-  //     seconds = i;
-  //     if (i == 0) {
-  //       seconds *= -1;
-  //       notifyListeners();
-  //       break;
-  //     }
-
-  //     if (i == 50) {
-  //       swiftness += i;
-  //       notifyListeners();
-  //       break;
-  //     }
-  //     notifyListeners();
-  //   }
-  //   notifyListeners();
-  // }
-
   showScore() {
     if (currentQuestionIndex == questionsData.length - 1) {
       score++;
+      print(score);
+
       notifyListeners();
     } else {
       score += 0;
       notifyListeners();
     }
-    
+
+    swiftness += 20;
+    print(swiftness);
+
     notifyListeners();
   }
 }

@@ -69,17 +69,18 @@ class BuildQuestions extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              // provider.onAnswered();
               length++;
-              provider.showScore();
-              print(provider.swiftness);
-              provider.changeColor();
-              provider.answerPressed(answerData.answerId);
-              provider.correctAnswerMethod(answerData.answerId);
 
-              if (provider.length == 3) {
+              provider.answerPressed(answerData.answerId);
+              provider.onCheckAnswer(answerData.answerId);
+
+              provider.showScore();
+
+              if (provider.currentQuestionIndex == 2) {
+                const Duration(
+                  seconds: 2000,
+                );
                 Navigator.pushReplacementNamed(context, AppRoutes.score);
-                // print(provider.second);
               }
             },
             child: Card(
