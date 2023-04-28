@@ -44,6 +44,7 @@ dependencies:
   firebase_database: ^10.1.1
   firebase_core: ^2.10.0
   reactive_forms: ^14.3.0
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:

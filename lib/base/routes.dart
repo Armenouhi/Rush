@@ -1,6 +1,6 @@
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
-import 'package:exam_at/pages/homepage/pages.dart';
+import 'package:exam_at/pages/homepage/screen/pages/pages.dart';
 import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';

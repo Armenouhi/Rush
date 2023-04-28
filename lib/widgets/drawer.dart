@@ -1,3 +1,4 @@
+import 'package:exam_at/base/routes.dart';
 import 'package:flutter/material.dart';
 
 import 'menu/drawer_menu.dart';
@@ -60,9 +61,12 @@ class DrawerWidget extends StatelessWidget {
                 icon: Icons.bookmark_add,
                 text: 'Buy OurBbook',
               ),
-              MenuDrawer(
-                icon: Icons.sign_language_outlined,
-                text: 'Sign Out',
+              InkWell(
+                onTap: () => Navigator.pushNamed(context, AppRoutes.login),
+                child: MenuDrawer(
+                  icon: Icons.sign_language_outlined,
+                  text: 'Sign Out',
+                ),
               )
             ],
           ),
