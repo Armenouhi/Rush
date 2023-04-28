@@ -1,5 +1,5 @@
 import 'package:exam_at/base/routes.dart';
-import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
+import 'package:exam_at/providers/questions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

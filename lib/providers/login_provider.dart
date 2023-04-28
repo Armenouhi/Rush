@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../base/regexp.dart';
+import '../base/regexp.dart';
 
 class LoginProvider extends ChangeNotifier {
   bool showPassword = false;

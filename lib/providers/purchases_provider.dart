@@ -1,17 +1,18 @@
-import 'package:exam_at/api/project_api.dart';
-import 'package:exam_at/models/leaderboard.dart';
+import 'package:exam_at/models/purchases.dart';
 import 'package:flutter/material.dart';
 
-import '../../../styles/style_of_container.dart';
+import '../api/project_api.dart';
+import '../styles/style_of_container.dart';
 
-class LeaderBoarderProvider extends ChangeNotifier {
-  bool isLoading = true;
-  List<LeaderbordModel> list = [];
+class PurchasesProvider extends ChangeNotifier {
+  PurchasesModel? purchasesModel;
+  List<PurchasesModel>? purchases;
+  bool isLoading = false;
   List<Color> colors = [];
 
   ContainerColors colorsContainer = ContainerColors();
 
-  LeaderBoarderProvider() {
+  PurchasesProvider() {
     getData();
     changeColors();
   }
@@ -20,12 +21,12 @@ class LeaderBoarderProvider extends ChangeNotifier {
     isLoading = true;
     if (!initial) notifyListeners();
 
-    final result = await ProjectAPI().leaderbordApi.getLeaderBoardData();
+    final result = await ProjectAPI().purchasesApi.getPurchasesData();
 
     if (result.isEmpty) {
     } else {
       isLoading = false;
-      list = result;
+      purchases = result;
 
       notifyListeners();
     }

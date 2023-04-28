@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../../widgets/buttons/button.dart';
 import '../../../widgets/buttons/text_button.dart';
-import 'login_provider.dart';
+import '../../../providers/login_provider.dart';
 
 class LoginPage extends StatelessWidget {
   // bool isChecked = false;

@@ -1,7 +1,7 @@
 import 'package:exam_at/pages/homepage/homepage.dart';
-import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
+import 'package:exam_at/providers/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/screen/pages/pages.dart';
-import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
+import 'package:exam_at/providers/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/quiz/score.dart';
@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import '../pages/auth/login/login.dart';
 import '../pages/homepage/leaderboard/leaderboard.dart';
 import '../pages/homepage/purchases/purchases.dart';
-import '../pages/homepage/purchases/purchases_provider.dart';
+import '../providers/purchases_provider.dart';
 import '../pages/homepage/quiz/questions.dart';
 
 class AppRoutes {

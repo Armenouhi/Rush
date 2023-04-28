@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../styles/style_of_container.dart';
+import '../styles/style_of_container.dart';
 
 class QuizProvider extends ChangeNotifier {
   bool isLoading = false;

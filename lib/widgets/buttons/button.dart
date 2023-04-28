@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/auth/login/login_provider.dart';
+import '../../providers/login_provider.dart';
 
 class RadButton extends StatelessWidget {
   String page;

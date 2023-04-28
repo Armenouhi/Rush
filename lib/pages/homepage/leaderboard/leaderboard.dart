@@ -1,4 +1,4 @@
-import 'package:exam_at/pages/homepage/leaderboard/leaderboard_provider.dart';
+import 'package:exam_at/providers/leaderboard_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

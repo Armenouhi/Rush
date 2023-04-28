@@ -1,8 +1,8 @@
 import 'package:exam_at/core/colors.dart';
 import 'package:exam_at/core/style.dart';
 import 'package:exam_at/pages/homepage/quiz/build_question.dart';
-import 'package:exam_at/pages/homepage/quiz/questions_provider.dart';
-import 'package:exam_at/pages/homepage/quiz/quiz_provider.dart';
+import 'package:exam_at/providers/questions_provider.dart';
+import 'package:exam_at/providers/quiz_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,7 @@ class QuestionsWidget extends StatelessWidget {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : Question(value)),
+                  : Scrollbar(child: Question(value))),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 20),
@@ -108,58 +108,56 @@ class QuestionsWidget extends StatelessWidget {
   }
 
   Widget Question(QuestionsProvider questionProvider) {
-    return Scrollbar(
-      child: Column(
-        children: <Widget>[
-          Row(children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 35),
-              child: SizedBox(
-                width: 200,
-                height: 70,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: questionProvider.questionsData.length,
-                  ),
-                  itemCount: questionProvider.questionsData.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Consumer<QuestionsProvider>(
-                        builder: (context, value, child) =>
-                            DiagonallyShapedCard(
-                                index: index + 1,
-                                width: 80,
-                                height: 40,
-                                color: index <= value.currentQuestionIndex - 1
-                                    ? questionProvider.backColor
-                                    : const Color.fromRGBO(249, 249, 249, 0.8)),
-                      ),
-                    );
-                  },
+    return Column(
+      children: <Widget>[
+        Row(children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 35),
+            child: SizedBox(
+              width: 200,
+              height: 70,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: questionProvider.questionsData.length,
                 ),
+                itemCount: questionProvider.questionsData.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Consumer<QuestionsProvider>(
+                      builder: (context, value, child) =>
+                          DiagonallyShapedCard(
+                              index: index + 1,
+                              width: 80,
+                              height: 40,
+                              color: index <= value.currentQuestionIndex - 1
+                                  ? questionProvider.backColor
+                                  : const Color.fromRGBO(249, 249, 249, 0.8)),
+                    ),
+                  );
+                },
               ),
             ),
-          ]),
-          Expanded(
-            child: PageView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
-              itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    BuildQuestions(questionProvider.questionsData[index]),
-                  ],
-                );
-              },
-              itemCount: questionProvider.questionsData.length,
-              scrollDirection: Axis.horizontal,
-              controller: questionProvider.pageController,
-            ),
           ),
-        ],
-      ),
+        ]),
+        Expanded(
+          child: PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: ((value) => questionProvider.onChangeIndex(value)),
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BuildQuestions(questionProvider.questionsData[index]),
+                ],
+              );
+            },
+            itemCount: questionProvider.questionsData.length,
+            scrollDirection: Axis.horizontal,
+            controller: questionProvider.pageController,
+          ),
+        ),
+      ],
     );
   }
 }

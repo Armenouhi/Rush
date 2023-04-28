@@ -1,8 +1,8 @@
 import 'package:exam_at/api/project_api.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/quiz.dart';
-import '../../../styles/style_of_container.dart';
+import '../models/quiz.dart';
+import '../styles/style_of_container.dart';
 
 class QuestionsProvider extends ChangeNotifier {
   QuestionsProvider() {

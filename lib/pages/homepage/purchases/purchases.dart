@@ -1,4 +1,4 @@
-import 'package:exam_at/pages/homepage/purchases/purchases_provider.dart';
+import 'package:exam_at/providers/purchases_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

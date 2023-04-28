@@ -3,7 +3,8 @@ import 'package:exam_at/core/colors.dart';
 import 'package:exam_at/core/images.dart';
 import 'package:exam_at/core/strings.dart';
 import 'package:exam_at/core/style.dart';
-import 'package:exam_at/pages/sign_up/sign_up_provider.dart';
+import 'package:exam_at/providers/sign_up_provider.dart';
+import 'package:exam_at/utils/validation/validation.dart';
 import 'package:exam_at/widgets/buttons/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,20 +25,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Widget _buildContent() {
-    final form = FormGroup({
-      'username': FormControl<String>(validators: [Validators.required]),
-      'email': FormControl<String>(
-        validators: [Validators.required, Validators.email],
-      ),
-      'password': FormControl<String>(
-        validators: [Validators.required, Validators.minLength(8)],
-      ),
-      'comfirm_password': FormControl<String>(
-        validators: [
-          Validators.required,
-        ],
-      ),
-    });
+    
     return Consumer<SignUpProvider>(
       builder: (context, value, child) => Column(
         children: [
@@ -123,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                       labelText: Strings.comfirmPassword,
                       border: const OutlineInputBorder(),
                     ),
-                    formControlName: 'comfirm_password',
+                    formControlName: 'comfirmPassword',
                     validationMessages: {
                       ValidationMessage.required: (error) =>
                           'Field must not be empty',
@@ -165,22 +153,7 @@ class _SignUpState extends State<SignUp> {
                 textBtn: Strings.save,
                 btnColor: TrivialRushColors.red),
           ),
-          // const Spacer(),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   children: [
-          //     SizedBox(
-          //       height: TrivialRushStyle.double300,
-          //       child: Expanded(
-          //         child: Image.asset(
-          //           TrivialRushImages.group4539,
-          //           height: TrivialRushStyle.double100,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+        
         ],
       ),
     );
