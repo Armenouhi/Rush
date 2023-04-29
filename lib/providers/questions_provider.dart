@@ -18,6 +18,7 @@ class QuestionsProvider extends ChangeNotifier {
   List<Color> colors = [];
   int index = 5;
   Color color = Colors.white;
+  List<int> answers = [-1, -1, -1];
   int currentQuestionIndex = 0;
   bool isChangeText = false;
   bool showResult = false;
@@ -29,9 +30,11 @@ class QuestionsProvider extends ChangeNotifier {
   String text = 'Get Ready';
   int seconds = 60;
   int swiftness = 0;
-  // int length = 0;
-  int i = 0;
+  int i = 0, j = 0;
   int score = 0;
+  int count = 0;
+  bool flag = true;
+
   Color backColor = const Color.fromRGBO(249, 249, 249, 0.8);
 
   ContainerColors colorsContainer = ContainerColors();
@@ -79,7 +82,7 @@ class QuestionsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getData() async {
+  Future<List<Questions>> getData() async {
     isLoading = true;
     final result = await ProjectAPI().quizApi.getQuizData();
 
@@ -87,16 +90,19 @@ class QuestionsProvider extends ChangeNotifier {
     quizData = result;
     questionsData = result.questions!;
     notifyListeners();
+    return questionsData;
   }
 
-  onChangeIndex(index) {
+  int onChangeIndex(index) {
     currentQuestionIndex = index;
     notifyListeners();
+    return currentQuestionIndex;
   }
 
-  onAnswerPressed() {
+  bool onAnswerPressed() {
     showResult = true;
     notifyListeners();
+    return showResult;
   }
 
   answerPressed(answerId) {
@@ -110,48 +116,57 @@ class QuestionsProvider extends ChangeNotifier {
     }
   }
 
-  onCheckAnswer(answerId) async {
+  Future<bool> onCheckAnswer(answerId) async {
     checkAnswer = true;
-    i++;
+
     int lengthAnswers = questionsData[currentQuestionIndex].answers!.length;
 
-    for (var i = 0; i < lengthAnswers; i++) {
+    for (i; i < lengthAnswers; i++) {
       if (questionsData[currentQuestionIndex].answers![i].answerId ==
           answerId) {
-        showScore();
         questionIndex = currentQuestionIndex;
         if (questionsData[currentQuestionIndex].answers![i].correctAnswer ==
             true) {
           correctAnswer = true;
-          backColor = const Color.fromRGBO(0, 153, 0, 0.8);
+          answers[i] = 1;
+          count += 1;
+
           notifyListeners();
-          return;
+          return correctAnswer;
         } else {
           correctAnswer = false;
-          backColor = const Color.fromRGBO(204, 0, 1, 0.8);
+
+          answers[i] = 0;
+
           notifyListeners();
-          return;
+          return correctAnswer;
         }
       }
     }
+
     notifyListeners();
     return correctAnswer;
   }
 
-  showScore() {
-    if (currentQuestionIndex == questionsData.length - 1) {
-      score++;
-      print(score);
-
+  Future<int> showScore() async {
+    var futureThatStopsIt = Future.delayed(const Duration(seconds: 1), () {
+      flag = false;
       notifyListeners();
-    } else {
-      score += 0;
-      notifyListeners();
-    }
+    });
 
-    swiftness += 20;
-    print(swiftness);
+    var futureWithTheLoop = () async {
+      while (flag) {
+        count++;
+        score = seconds - count;
+        await Future.delayed(Duration(seconds: 0));
+
+        notifyListeners();
+      }
+    }();
+
+    await Future.wait([futureThatStopsIt, futureWithTheLoop]);
 
     notifyListeners();
+    return score;
   }
 }

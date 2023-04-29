@@ -25,7 +25,6 @@ class Pages extends StatelessWidget {
       child: ChangeNotifierProvider(
         create: (context) => PagesProvider(),
         child: Scaffold(
-          // ignore: avoid_unnecessary_containers
           body: Consumer<PagesProvider>(
             builder: (context, value, child) => Stack(
               children: [

@@ -57,7 +57,7 @@ class _SignUpState extends State<SignUp> {
                   ReactiveTextField(
                     controller: value.usernameCtrl,
                     decoration: InputDecoration(
-                      labelText: Strings.username, //at@gmail.com
+                      labelText: Strings.username, 
                       border: const OutlineInputBorder(),
                     ),
                     formControlName: 'username',

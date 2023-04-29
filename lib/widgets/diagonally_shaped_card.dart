@@ -21,7 +21,6 @@ class DiagonallyShapedCard extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      // ignore: prefer_const_constructors
       child: Card(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -30,7 +29,6 @@ class DiagonallyShapedCard extends StatelessWidget {
           ),
         ),
         color: color,
-        // ignore: prefer_const_constructors
         child: Center(
           child: Text(
             '$i',

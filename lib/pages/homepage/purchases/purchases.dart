@@ -39,7 +39,7 @@ class Purchases extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: value.purchases?.length,
                       itemBuilder: (context, index) => Container(
-                        // ignore: prefer_const_constructors
+                       
                         child: Padding(
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 5, bottom: 5),
@@ -49,7 +49,7 @@ class Purchases extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.0),
                                 side: const BorderSide(
                                   color: Color.fromARGB(255, 189, 187, 187),
-                                  //<-- SEE HERE
+                                
                                 ),
                               ),
                               child: Row(
@@ -74,7 +74,7 @@ class Purchases extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                               side: const BorderSide(
-                                                color: Colors.white, //<-- SEE HERE
+                                                color: Colors.white, 
                                               ),
                                             ),
                                             child: Padding(
@@ -142,7 +142,7 @@ class Purchases extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // ignore: unrelated_type_equality_checks 
+                          
                              Align(
                                 alignment: Alignment.topLeft,
                                 child: 

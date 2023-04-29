@@ -15,7 +15,6 @@ class SignUpProvider extends ChangeNotifier {
   bool isEmpty = false;
   bool isCorrectData = false;
   static const userInfo = 'userInfo';
-  // late SharedPreferences sharedPreferences;
   List<UserInfoModel> users = [];
 
   SignUpProvider() {
@@ -61,17 +60,6 @@ class SignUpProvider extends ChangeNotifier {
     final String json = await prefs.getString(userInfo) ?? '';
 
     final List<UserInfoModel> data = UserInfoModel.decode(json);
-
-    print(data.length);
-
-    ///////////////////////////////////////
-
-    // List<String> json = jsonEncode(users) as List<String>;
-    // print(json);
-    // var prefs = await SharedPreferences.getInstance();
-    // prefs.setStringList(usersData, json);
-
-    // print(prefs.getString(usersData) ?? '');
   }
 
   Future<String> _getInformation() async {
@@ -80,15 +68,7 @@ class SignUpProvider extends ChangeNotifier {
   }
 
   Future _initData() async {
-   var data = await _getInformation();
-    // print(data.runtimeType);
-    print(data);
-    // map = json.decode(data);
-    // print(map);
-    // print(map.runtimeType);
-
-    // mapData = Map.fromIterables(map.keys, map.values);
-    // print(mapData.runtimeType);
-    // print(mapData);
+    var data = await _getInformation();
+    
   }
 }

@@ -22,7 +22,6 @@ class Quiz extends StatelessWidget {
               ? const Center(
                   child: CircularProgressIndicator.adaptive(),
                 )
-              // ignore: avoid_unnecessary_containers
               : Container(
                   decoration: BoxDecoration(
                     color: value.index - 1 > 0
@@ -42,10 +41,6 @@ class Quiz extends StatelessWidget {
                             : () {
                                 value.changeText();
                                 clicked = true;
-                                // value.changeSeconds(
-                                //   value.questionsData[0].answers![0].answerId
-                                // );
-                                // value.changeAppbarBGColor();
                               },
                         child: value.isChangeText != true
                             ? Text(

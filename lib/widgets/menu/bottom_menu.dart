@@ -42,7 +42,6 @@ class BottomMenuWidget extends StatelessWidget {
                               Navigator.pushNamed(context, AppRoutes.quiz);
                               changeColors();
                             },
-                            // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
                                 Icons.play_circle_fill,
@@ -84,7 +83,7 @@ class BottomMenuWidget extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.purchases);
                           },
-                          // ignore: sort_child_properties_last
+                         
                           child: const Center(
                             child: Icon(
                               Icons.add_shopping_cart,
@@ -107,6 +106,6 @@ class BottomMenuWidget extends StatelessWidget {
           ]),
     );
   }
-  
+
   void changeColors() {}
 }

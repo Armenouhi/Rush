@@ -6,7 +6,6 @@ class RadButton extends StatelessWidget {
   String page;
   String textBtn;
   Color btnColor;
-  // bool click;
   LoginProvider loginProvider = LoginProvider();
   BuildContext context;
   Function callback;

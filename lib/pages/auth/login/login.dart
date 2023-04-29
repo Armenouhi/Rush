@@ -12,7 +12,6 @@ import '../../../widgets/buttons/text_button.dart';
 import '../../../providers/login_provider.dart';
 
 class LoginPage extends StatelessWidget {
-  // bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -24,7 +23,6 @@ class LoginPage extends StatelessWidget {
             builder: (context, value, child) => Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +43,7 @@ class LoginPage extends StatelessWidget {
                   child: TextField(
                     controller: value.usernameCtrl,
                     decoration: InputDecoration(
-                      labelText: Strings.email, //at@gmail.com
+                      labelText: Strings.email, 
                       border: const OutlineInputBorder(),
                     ),
                   ),
@@ -68,7 +66,6 @@ class LoginPage extends StatelessWidget {
                                 Icons.visibility,
                                 color: Colors.grey,
                               )
-                            // ignore: dead_code
                             : const Icon(
                                 Icons.visibility_off,
                                 color: Colors.grey,

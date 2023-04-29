@@ -44,7 +44,7 @@ class AppRoutes {
           ),
 
       AppRoutes.quiz: (context) => Quiz(),
-      // AppRoutes.purchases: (context) => Purchases(),
+
       AppRoutes.purchases: (context) => ChangeNotifierProvider(
             create: (context) => PurchasesProvider(),
             child: Purchases(),

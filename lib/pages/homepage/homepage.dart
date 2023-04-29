@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         children: [
           Row(
             children: [
-               Expanded(
+              Expanded(
                 child: Image.asset(
                   'assets/asset161.png',
                   height: 70,
@@ -38,16 +38,12 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 0),
                 child: Column(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    // ignore: prefer_const_constructors
+                  children: const [
                     Center(child: BottomMenuWidget()),
-                    // ignore: prefer_const_constructors
                     Center(child: TopMenuWidget())
                   ],
                 ),
-              )
-              ),
+              )),
           Expanded(child: Image.asset('assets/group4438.png'))
         ],
       ),

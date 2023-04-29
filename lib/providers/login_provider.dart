@@ -34,8 +34,6 @@ class LoginProvider extends ChangeNotifier {
   Future<bool> onLogin() async {
     var value = await val;
 
-    print(value);
-
     String? email;
     String? password;
 
@@ -70,7 +68,6 @@ class LoginProvider extends ChangeNotifier {
       return isShowDialog;
     }
 
-    // email: armenuhi.h.toroyan@gmail.com, password: Armenuhi1993!
   }
 
   bool showHidePassword() {

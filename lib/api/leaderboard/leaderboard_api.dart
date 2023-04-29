@@ -15,9 +15,7 @@ class LeaderbordApi {
       'https://my-json-server.typicode.com/narekpog/my-json/leaderboard',
     );
 
-    print(result.runtimeType);
-
-     if (result.data is List) {
+    if (result.data is List) {
       leaderBordList = result.data
           .map<LeaderbordModel>(
             (e) => LeaderbordModel.fromJson(e),

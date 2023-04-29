@@ -5,7 +5,6 @@ class PagesProvider extends ChangeNotifier {
   int index = 0;
 
   Future<bool> showIndicator() async {
-    // isVisible = false;
     index += 1;
     notifyListeners();
     return isVisible;

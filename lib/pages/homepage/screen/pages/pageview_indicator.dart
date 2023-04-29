@@ -23,7 +23,6 @@ Widget PageIndigator() {
                 effect: const SwapEffect(paintStyle: PaintingStyle.fill),
                 onDotClicked: ((index) {
                   value.showIndicator();
-                  //Armenuhi4774
                   controller.animateToPage(index,
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.linear);

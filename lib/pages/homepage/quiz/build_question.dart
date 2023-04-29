@@ -1,4 +1,3 @@
-import 'package:exam_at/core/style.dart';
 import 'package:exam_at/providers/questions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../../base/routes.dart';
 import '../../../models/quiz.dart';
 
-// ignore: must_be_immutable
 class BuildQuestions extends StatelessWidget {
   Questions question;
   int length = 0;
@@ -39,7 +37,6 @@ class BuildQuestions extends StatelessWidget {
           questionData.questionImageUrl != null
               ? Image.network('${questionData.questionImageUrl}')
               : Container(),
-          // const SizedBox(height: 20),
           Column(
             children: questionData.answers!
                 .map<Widget>(
@@ -73,8 +70,6 @@ class BuildQuestions extends StatelessWidget {
 
               provider.answerPressed(answerData.answerId);
               provider.onCheckAnswer(answerData.answerId);
-
-              provider.showScore();
 
               if (provider.currentQuestionIndex == 2) {
                 const Duration(

@@ -9,7 +9,6 @@ class Sign extends StatelessWidget {
         width: 100,
         height: 100,
         color: Colors.greenAccent,
-        // ignore: prefer_const_constructors
         child: CustomPaint(
           foregroundPainter: MyTextPainter(),
           painter: MyPainter(),
@@ -29,12 +28,9 @@ class MyPainter extends CustomPainter {
     paint.isAntiAlias;
 
     var path = Path();
-    // canvas.rotate(180);
 
-    
     path.relativeLineTo((size.height), (size.height));
     canvas.drawPath(path, paint);
-    
   }
 
   @override
@@ -44,10 +40,8 @@ class MyPainter extends CustomPainter {
 }
 
 class MyTextPainter extends CustomPainter {
-  //         <-- CustomPainter class
   @override
   void paint(Canvas canvas, Size size) {
-    // ignore: prefer_const_constructors, unused_local_variable
     final textStyle = TextStyle(
       color: Colors.black,
       fontSize: 30,
@@ -63,13 +57,11 @@ class MyTextPainter extends CustomPainter {
     textPainter.layout(
       minWidth: 0,
       maxWidth: size.width,
-      
     );
-    // ignore: prefer_const_constructors
+
     final offset = Offset(-45, 300);
     canvas.rotate(-45);
     textPainter.paint(canvas, offset);
-    
 
     var path = Path();
     path.lineTo(size.height, size.height);

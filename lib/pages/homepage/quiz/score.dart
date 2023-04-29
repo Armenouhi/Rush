@@ -14,11 +14,11 @@ class Score extends StatelessWidget {
   }
 
   Widget score(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => QuestionsProvider(),
-      child: Consumer<QuestionsProvider>(
-        builder: (context, value, child) => Scaffold(
+      child: Consumer<QuestionsProvider>(builder: (context, value, child) {
+        value.showScore();
+        return Scaffold(
           body: SizedBox(
             width: double.infinity,
             child: Container(
@@ -40,7 +40,7 @@ class Score extends StatelessWidget {
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                     Text(
-                      '${value.swiftness}',
+                      ' ${value.score}',
                       style: const TextStyle(fontSize: 70, color: Colors.white),
                     ),
                     const Spacer(),
@@ -58,9 +58,8 @@ class Score extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
-    //
   }
 }

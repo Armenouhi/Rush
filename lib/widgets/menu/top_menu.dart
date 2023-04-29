@@ -41,7 +41,6 @@ class TopMenuWidget extends StatelessWidget {
                               Navigator.pushNamed(
                                   context, AppRoutes.leaderBoard);
                             },
-                            // ignore: sort_child_properties_last
                             child: const Center(
                               child: Icon(
                                 Icons.bar_chart_outlined,
@@ -80,10 +79,7 @@ class TopMenuWidget extends StatelessWidget {
                     children: [
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {
-                           
-                          },
-                          // ignore: sort_child_properties_last
+                          onPressed: () {},
                           child: const Center(
                             child: Icon(
                               Icons.account_circle,
