@@ -7,10 +7,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'base/routes.dart';
-import 'pages/homepage/quiz/questions.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // Firebase.initializeApp();
   // await Firebase.initializeApp();
   runApp(MyApp());

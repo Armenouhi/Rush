@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:exam_at/base/regexp.dart';
 import 'package:exam_at/base/routes.dart';
+import 'package:exam_at/models/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,16 +13,24 @@ class SignUpProvider extends ChangeNotifier {
   TextEditingController comfirmPasswordCtrl = TextEditingController();
   bool showDialog = false;
   bool isEmpty = false;
-  late SharedPreferences sharedPreferences;
-  var data;
-  List<String> users = [];
+  bool isCorrectData = false;
+  static const userInfo = 'userInfo';
+  // late SharedPreferences sharedPreferences;
+  List<UserInfoModel> users = [];
 
-  onLogin(BuildContext context) {
+  SignUpProvider() {
+    _initData();
+  }
+
+  onLogin(BuildContext context) async {
     if (usernameCtrl.text.isNotEmpty &&
         emailCtrl.text.isNotEmpty &&
         passwordCtrl.text.isNotEmpty &&
         comfirmPasswordCtrl.text.isNotEmpty) {
       showDialog = false;
+
+      await _setInformation(
+          usernameCtrl.text, emailCtrl.text, passwordCtrl.text);
       notifyListeners();
     } else {
       showDialog = true;
@@ -31,35 +40,55 @@ class SignUpProvider extends ChangeNotifier {
     }
   }
 
-  // Future<Map<String, String>> onSaveData(
-  //     String username, String email, String password) async {
-  //   sharedPreferences = await SharedPreferences.getInstance();
-  //   Map<String, String> data = {
-  //     "username": username,
-  //     "email": email,
-  //     "password": password
-  //   };
+  Future _setInformation(
+    String username,
+    String email,
+    String password,
+  ) async {
+    var value = UserInfoModel(
+        id: '${username.hashCode}',
+        username: username,
+        email: email,
+        password: password);
 
-  //   String json = jsonEncode(data);
+    users.add(value);
 
-  //   if (json != sharedPreferences.getString('json')) {
-  //     isCorrect = true;
-  //     sharedPreferences.setString('json', json);
-  //   } else {
-  //     isCorrect = false;
-  //     print('Account already exists!');
-  //   }
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String encodedData = UserInfoModel.encode(users);
 
-  //   return data;
-  // }
+    await prefs.setString(userInfo, encodedData);
 
-  // Future<void> getJsonData() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   data = prefs.getString('json') ?? data;
+    final String json = await prefs.getString(userInfo) ?? '';
 
-  //   print(data);
-  //   users.add(data);
+    final List<UserInfoModel> data = UserInfoModel.decode(json);
 
-  //   print(users);
-  // }
+    print(data.length);
+
+    ///////////////////////////////////////
+
+    // List<String> json = jsonEncode(users) as List<String>;
+    // print(json);
+    // var prefs = await SharedPreferences.getInstance();
+    // prefs.setStringList(usersData, json);
+
+    // print(prefs.getString(usersData) ?? '');
+  }
+
+  Future<String> _getInformation() async {
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.getString(userInfo) ?? '';
+  }
+
+  Future _initData() async {
+   var data = await _getInformation();
+    // print(data.runtimeType);
+    print(data);
+    // map = json.decode(data);
+    // print(map);
+    // print(map.runtimeType);
+
+    // mapData = Map.fromIterables(map.keys, map.values);
+    // print(mapData.runtimeType);
+    // print(mapData);
+  }
 }

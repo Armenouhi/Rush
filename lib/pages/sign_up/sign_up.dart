@@ -25,7 +25,6 @@ class _SignUpState extends State<SignUp> {
   }
 
   Widget _buildContent() {
-    
     return Consumer<SignUpProvider>(
       builder: (context, value, child) => Column(
         children: [
@@ -61,7 +60,6 @@ class _SignUpState extends State<SignUp> {
                       labelText: Strings.username, //at@gmail.com
                       border: const OutlineInputBorder(),
                     ),
-                    
                     formControlName: 'username',
                     validationMessages: {
                       ValidationMessage.required: (error) =>
@@ -123,7 +121,6 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ),
-
           SizedBox(
             height: TrivialRushStyle.double50,
           ),
@@ -146,6 +143,8 @@ class _SignUpState extends State<SignUp> {
                                 : Strings.credentialsEmpty,
                           );
                         });
+                  } else {
+                    Navigator.pushNamed(context, AppRoutes.login);
                   }
                 },
                 context: context,
@@ -153,7 +152,6 @@ class _SignUpState extends State<SignUp> {
                 textBtn: Strings.save,
                 btnColor: TrivialRushColors.red),
           ),
-        
         ],
       ),
     );

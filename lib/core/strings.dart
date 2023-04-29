@@ -13,4 +13,6 @@ class Strings {
   static String username = 'User name';
   static String save = 'Save';
   static String cancel = 'Cancel';
+  static String checkAccount = 'Do you have an account?';
+  static String checkEmailPassword = 'Please check Your Email and Password!';
 }

@@ -7,7 +7,7 @@ final form = FormGroup({
   'email':
       FormControl<String>(validators: [Validators.email, Validators.required]),
   'password': FormControl<String>(
-      validators: [Validators.required, Validators.pattern(passwordRegEx, validationMessage:ValidationMessage.pattern)]),
+      validators: [Validators.required, Validators.pattern(passwordRegEx, validationMessage: ValidationMessage.pattern)]),
   'comfirmPassword': FormControl<String>(validators: [
     Validators.required,
   ])

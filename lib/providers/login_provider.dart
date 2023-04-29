@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:exam_at/providers/sign_up_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../base/regexp.dart';
@@ -9,18 +10,20 @@ class LoginProvider extends ChangeNotifier {
   TextEditingController usernameCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();
 
+  List<String> emails = [];
+  List<String> passwords = [];
+
   bool isChecked = false;
   bool isChangePage = false;
-  bool showDialog = false;
-  bool isEmpty = false;
+  bool isShowDialog = false;
+  bool isEmpty = true;
   bool obscureText = true;
 
   late SharedPreferences sharedPreferences;
-  var data;
+  late Map val;
 
   LoginProvider() {
-    // getJsonData();
-    // onLogin();
+    getDataSP();
   }
 
   void checkCheckBox() {
@@ -28,26 +31,46 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onLogin() {
-    final regExp = RegExp(RegularExpressions.email);
+  Future<bool> onLogin() async {
+    var value = await val;
 
-    // email: armenuhi.h.toroyan@gmail.com, password: Armenuhi1993!
+    print(value);
 
-    if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
-      if (regExp.hasMatch(usernameCtrl.text)) {
-        isChangePage = true;
-      } else {
-        showDialog = true;
+    String? email;
+    String? password;
+
+    for (var entry in value.entries) {
+      if (entry.key == 'email') {
+        email = entry.value;
       }
 
-      notifyListeners();
-    } else {
-      isChangePage = false;
-      showDialog = true;
-      isEmpty = true;
+      if (entry.key == 'password') {
+        password = entry.value;
+      }
     }
 
-    return isChangePage;
+    if (usernameCtrl.text.isNotEmpty && passwordCtrl.text.isNotEmpty) {
+      if (usernameCtrl.text == email && passwordCtrl.text == password) {
+        isChangePage = true;
+        isShowDialog = false;
+        notifyListeners();
+        return isChangePage;
+      } else {
+        isShowDialog = true;
+        isChangePage = false;
+        isEmpty = false;
+        notifyListeners();
+        return isShowDialog;
+      }
+    } else {
+      isShowDialog = true;
+      isChangePage = false;
+      isEmpty = true;
+      notifyListeners();
+      return isShowDialog;
+    }
+
+    // email: armenuhi.h.toroyan@gmail.com, password: Armenuhi1993!
   }
 
   bool showHidePassword() {
@@ -57,14 +80,22 @@ class LoginProvider extends ChangeNotifier {
     return showPassword;
   }
 
-  // Future<void> getJsonData() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   data = prefs.getString('json') ?? data;
+  getDataSP() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString(
+      SignUpProvider.userInfo,
+    );
 
-  //   print(data.runtimeType);
-  //   Map json = jsonDecode(data);
-  //   var js = json as Map;
+    if (data == null) {
+      isShowDialog = true;
+      val = {};
+      return;
+    } else {
+      var list = json.decode(data);
 
-  //   // print(js.map((key, value) => value));
-  // }
+      for (var i = 0; i < list.length; i++) {
+        val = Map.from(list[i]);
+      }
+    }
+  }
 }
