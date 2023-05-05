@@ -1,3 +1,5 @@
+import 'package:exam_at/pages/auth/pasword/change_password.dart';
+import 'package:exam_at/pages/auth/pasword/new_password.dart';
 import 'package:exam_at/pages/homepage/homepage.dart';
 import 'package:exam_at/providers/leaderboard_provider.dart';
 import 'package:exam_at/pages/homepage/screen/pages/pages.dart';
@@ -5,7 +7,8 @@ import 'package:exam_at/providers/questions_provider.dart';
 
 import 'package:exam_at/pages/homepage/quiz/quiz.dart';
 import 'package:exam_at/pages/homepage/quiz/score.dart';
-import 'package:exam_at/pages/sign_up/sign_up.dart';
+import 'package:exam_at/pages/auth/sign_up/sign_up.dart';
+import 'package:exam_at/utils/verification/verification.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +21,7 @@ import '../pages/homepage/quiz/questions.dart';
 
 class AppRoutes {
   static const login = '/';
-  static const signUp = '/sign up';
+  static const signUp = '/signup';
   static const homepage = '/homepage';
   static const leaderBoard = '/leaderboard';
   static const pages = '/pages';
@@ -26,6 +29,9 @@ class AppRoutes {
   static const questions = '/questions';
   static const purchases = '/purchases';
   static const score = '/score';
+  static const changePassword = '/forget&password';
+  static const newPassword = '/new&password';
+  static const pinCodeVerificationScreen = '/pin&code&verification&screen';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
     PageArguments? pageArguments;
@@ -42,9 +48,7 @@ class AppRoutes {
             create: (context) => LeaderBoarderProvider(),
             child: LeaderBord(),
           ),
-
       AppRoutes.quiz: (context) => Quiz(),
-
       AppRoutes.purchases: (context) => ChangeNotifierProvider(
             create: (context) => PurchasesProvider(),
             child: Purchases(),
@@ -53,7 +57,10 @@ class AppRoutes {
             create: (context) => QuestionsProvider(),
             child: QuestionsWidget(),
           ),
-      AppRoutes.score: (context) => const Score()
+      AppRoutes.score: (context) => const Score(),
+      AppRoutes.changePassword: (context) => ChangePassord(),
+      AppRoutes.newPassword: (context) => NewPassword(),
+      AppRoutes.pinCodeVerificationScreen:(context) =>  const PinCodeVerificationScreen(phoneNumber: '+37494182844'),
     };
 
     WidgetBuilder builder = routes[settings.name] ?? routes.values.first;

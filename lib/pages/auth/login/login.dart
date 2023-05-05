@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
                     btnColor: TrivialRushColors.red),
                 TextBtn(
                   textBtn: Strings.forgetPassword,
-                  onPressed: () => print('Forget Password'),
+                  onPressed: () => Navigator.pushNamed(context, AppRoutes.changePassword),
                 ),
                 TextBtn(
                     textBtn: Strings.signUp,
